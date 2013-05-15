@@ -23,8 +23,18 @@ function init(){
         location.reload();
     });
     if ($("#button-follow").text().trim() == "unfollow"){
-        $("#button-follow").addClass("disabled");
-//        $("#button-follow").attr("disabled", "disabled");
+        $("#button-follow").click(function(e){
+            e.preventDefault();
+            var data = {"u" : $.cookie("u"), "p" : $.cookie("p"), "target" : $("#username").text()};
+            $.post("/api/relation/unfollow", data, function(data){
+                if (data.return == 0){
+                    location.reload();
+                }
+                else{
+                    location = "/signin";
+                }
+            });
+        });
     }
     else{
         $("#button-follow").click(function(e){
@@ -33,6 +43,9 @@ function init(){
             $.post("/api/relation/follow", data, function(data){
                 if (data.return == 0){
                     location.reload();
+                }
+                else{
+                    location = "/signin";
                 }
             });
         });

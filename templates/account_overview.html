@@ -58,16 +58,20 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="favorite">
+                        {% if self %}
                         <div id="add-fav" class="input-append">
                             <input id="url-add-fav" type="text" class="" style="min-width: 512px;" data-provide="typeahead">
                             <input id="button-add-fav" type="button" value="add" class="btn btn-primary">
                         </div>
+                        {% endif %}
                         <ul>
                             {% for f in favorites %}
                                 <li>
                                     <img src="http://g.etfv.co/{{ f.link.url }}" style="width: 16px; height: 16px;">
                                     <a href="{{ f.link.url }}">{{ f.link.url }}</a>
+                                    {% if self %}
                                     <i class="icon-remove" style="float: right;"></i>
+                                    {% endif %}
                                 </li>
                             {% endfor %}
                         </ul>

@@ -71,5 +71,14 @@ def relationHandler(request, cmd):
         res['message'] = 'Followed successfully!'
         res['return'] = 0
         return HttpResponse(json.dumps(res), content_type='application/json')
+    elif cmd == 'unfollow':
+        b = Account.objects.get(username=request.POST.get('target'))
+        r = getOrCreateRelation(a, b, Relation.FOLLOW)
+        if r:
+            r.delete()
+        res = dict()
+        res['message'] = 'Unfollowed successfully!'
+        res['return'] = 0
+        return HttpResponse(json.dumps(res), content_type='application/json')
     else:
         return defaultHandler(request)

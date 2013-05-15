@@ -11,8 +11,8 @@ function init(){
             var data = {"u" : $("#u").val(), "p" : $("#p").val()};
             $.post("/api/signin", data, function(data){
                 if (data.return == 0){
-                    $.cookie("u", $("#u").val(), {expires: 30, path: "/"});
-                    $.cookie("p", $("#p").val(), {expires: 30, path: "/"});
+                    $.cookie("u", $("#u").val(), {expires: 180, path: "/"});
+                    $.cookie("p", $("#p").val(), {expires: 180, path: "/"});
                     location.reload();
                 }
                 else{

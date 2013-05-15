@@ -29,18 +29,18 @@ def getOrCreateLink(url):
     return l
 
 
-def getLinkByAccount(account):
+def getLinkByAccount(account, depth=0):
     f = Favorite.objects.filter(account=account)
-    r = Relation.objects.filter(account1=account).filter(relationType=1)
+    r = Relation.objects.filter(account1=account, relationType=Relation.FOLLOW)
     l1 = len(f)
     l2 = len(r)
-    if l1 + l2 == 0:
+    if l1 + l2 == 0 or depth > 4:
         return getOrCreateLink('http://' + settings.DOMAIN + '/account/' + account.username)
     i = random.randint(0, l1 + l2 - 1)
     if i < l1:
         return f[i].link
     else:
-        return getLinkByAccount(r[i - l1].account2)
+        return getLinkByAccount(r[i - l1].account2, depth + 1)
 
 
 def createHistory(account, link):
