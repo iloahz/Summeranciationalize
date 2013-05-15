@@ -20,4 +20,4 @@ def signUpHandler(request):
 
 
 def signInHandler(request):
-    return render_to_response('signin.html')
+    return render_to_response('signup.html')
