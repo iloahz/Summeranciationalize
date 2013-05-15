@@ -11,9 +11,12 @@ function init(){
             var data = {"u" : $("#u").val(), "e" : $("#e").val(), "p" : $("#p").val()};
             $.post("/api/signup", data, function(data){
                 if (data.return == 0){
-                    $.cookie('u', $("#u").val());
-                    $.cookie('p', $("#p").val());
+                    $.cookie('u', $("#u").val(), {path : "/"});
+                    $.cookie('p', $("#p").val(), {path : "/"});
                     location.reload();
+                }
+                else{
+                    alert(data.message);
                 }
             });
         }
