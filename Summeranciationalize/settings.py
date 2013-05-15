@@ -2,7 +2,13 @@
 import os
 
 PROJECT_DIR = os.getcwd()
-DOMAIN = '127.0.0.1:8000'
+LOCAL = False
+if ':' in PROJECT_DIR:
+    LOCAL = True
+if LOCAL:
+    DOMAIN = '127.0.0.1:8000'
+else:
+    DOMAIN = 'summeranciationalize.com'
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
