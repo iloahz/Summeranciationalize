@@ -21,77 +21,120 @@
             cursor: pointer;
         }
     </style>
+    <style type="text/css">
+        /* Sticky footer styles
+        -------------------------------------------------- */
+    html,
+    body {
+        height: 100%;
+        /* The html and body elements cannot have any padding or margin. */
+    }
+        /* Wrapper for page content to push down footer */
+    #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -32px;
+    }
+        /* Set the fixed height of the footer here */
+    #push,
+    #footer {
+        height: 32px;
+        text-align: center;
+    }
+    #footer ul li{
+        list-style: none;
+        display: inline;
+        padding-left: 8px;
+    }
+    #footer a{
+        color: #000000;
+    }
+        /* Lastly, apply responsive CSS fixes as necessary */
+    @media (max-width: 767px) {
+        #footer {
+            margin-left: -20px;
+            margin-right: -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+</style>
 </head>
 <body>
-    <div id="container" class="container">
-        <div id="account-general" class="row" style="padding-top: 32px;">
-            <div id="account-avatar" class="span3 thumbnail" style="text-align: center;background: #ffffff;">
-                <img src="{{ avatar }}" class="img-rounded" style="margin-top: 4px;">
-                {% if self %}
-                    <button id="button-logout" class="btn btn-primary" style="margin-top: 16px;margin-bottom: 8px;">
-                        logout
-                    </button>
-                {% else %}
-                    <button id="button-follow" class="btn btn-primary" style="margin-top: 16px;margin-bottom: 8px;">
-                        {% if following %}
-                            unfollow
-                        {% else %}
-                            follow
-                        {% endif %}
-                    </button>
-                {% endif %}
+    <div id="wrap">
+        <div id="container" class="container">
+            <div id="account-general" class="row" style="padding-top: 32px;">
+                <div id="account-avatar" class="span3 thumbnail" style="text-align: center;background: #ffffff;">
+                    <img src="{{ avatar }}" class="img-rounded" style="margin-top: 4px;">
+                    {% if self %}
+                        <button id="button-logout" class="btn btn-primary" style="margin-top: 16px;margin-bottom: 8px;">
+                            logout
+                        </button>
+                    {% else %}
+                        <button id="button-follow" class="btn btn-primary" style="margin-top: 16px;margin-bottom: 8px;">
+                            {% if following %}
+                                unfollow
+                            {% else %}
+                                follow
+                            {% endif %}
+                        </button>
+                    {% endif %}
+                </div>
+                <div id="account-desc" class="span5 offset2 well">
+                    <ul style="list-style: none;">
+                        <li><span class="label">user name </span><span class="value" id="username">{{ username }}</span></li>
+                        <li><span class="label">member since </span><span class="value">{{ since }}</span></li>
+                        <li><span class="label">total hits </span><span class="value">{{ totalHits }}</span></li>
+                        <li><span class="label">total links</span><span class="value">{{ totalFavorite }}</span></li>
+                    </ul>
+                </div>
             </div>
-            <div id="account-desc" class="span5 offset2 well">
-                <ul style="list-style: none;">
-                    <li><span class="label">user name </span><span class="value" id="username">{{ username }}</span></li>
-                    <li><span class="label">member since </span><span class="value">{{ since }}</span></li>
-                    <li><span class="label">total hits </span><span class="value">{{ totalHits }}</span></li>
-                    <li><span class="label">total links</span><span class="value">{{ totalFavorite }}</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="row" style="margin-top: 32px;">
-            <div class="span11 tabbable">
-                <ul class="nav nav-tabs">
-                    <li class="active"><a href="#favorite" data-toggle="tab">Favorite</a></li>
-                    <li><a href="#history" data-toggle="tab">History</a></li>
-                </ul>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="favorite">
-                        {% if self %}
-                        <div id="add-fav" class="input-append">
-                            <input id="url-add-fav" type="text" class="" style="min-width: 512px;" data-provide="typeahead">
-                            <input id="button-add-fav" type="button" value="add" class="btn btn-primary">
+            <div class="row" style="margin-top: 32px;">
+                <div class="span11 tabbable">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#favorite" data-toggle="tab">Favorite</a></li>
+                        <li><a href="#history" data-toggle="tab">History</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="favorite">
+                            {% if self %}
+                            <div id="add-fav" class="input-append">
+                                <input id="url-add-fav" type="text" class="" style="min-width: 512px;" data-provide="typeahead">
+                                <input id="button-add-fav" type="button" value="add" class="btn btn-primary">
+                            </div>
+                            {% endif %}
+                            <ul>
+                                {% for f in favorites %}
+                                    <li>
+                                        <img src="http://g.etfv.co/{{ f.link.url }}" style="width: 16px; height: 16px;">
+                                        <a href="{{ f.link.url }}">{{ f.link.url }}</a>
+                                        {% if self %}
+                                        <i class="icon-remove" style="float: right;"></i>
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
                         </div>
-                        {% endif %}
-                        <ul>
-                            {% for f in favorites %}
-                                <li>
-                                    <img src="http://g.etfv.co/{{ f.link.url }}" style="width: 16px; height: 16px;">
-                                    <a href="{{ f.link.url }}">{{ f.link.url }}</a>
-                                    {% if self %}
-                                    <i class="icon-remove" style="float: right;"></i>
-                                    {% endif %}
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="tab-pane" id="history">
-                        <ul>
-                            {% for h in history %}
-                                <li>
-                                    <img src="http://g.etfv.co/{{ h.link.url }}" style="width: 16px; height: 16px;">
-                                    <a href="{{ h.link.url }}">{{ h.link.url }}</a>
-                                    <span style="float: right;">{{ h.hitTime|date:'H:i ~ Y/m/d' }}</span>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        <div class="tab-pane" id="history">
+                            <ul>
+                                {% for h in history %}
+                                    <li>
+                                        <img src="http://g.etfv.co/{{ h.link.url }}" style="width: 16px; height: 16px;">
+                                        <a href="{{ h.link.url }}">{{ h.link.url }}</a>
+                                        <span style="float: right;">{{ h.hitTime|date:'H:i ~ Y/m/d' }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div id="push"></div>
     </div>
-
+    {% include "footer.html" %}
     <script src="/static/js/jquery-1.9.1.min.js"></script>
     <script src="/static/js/jquery.cookie.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
