@@ -11,10 +11,10 @@ def getAccountByUsername(username):
         return None
 
 
-def verifyAccount(username, password):
-    a = Account.objects.filter(username=username).filter(password=password)
+def verifyAccount(request):
+    a = Account.objects.filter(username=request.COOKIES.get('u')).filter(password=request.COOKIES.get('p'))
     try:
-        return a[0]
+        return a.get()
     except:
         return None
 

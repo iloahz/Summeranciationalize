@@ -12,7 +12,7 @@ function init(){
             $.post("/api/signup", data, function(data){
                 alert(data.message);
                 if (data.return == 0){
-                    window.location = "/account/" + $("#u").val();
+                    location.reload();
                 }
             });
         }

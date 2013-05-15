@@ -13,10 +13,7 @@ function init(){
                 if (data.return == 0){
                     $.cookie("u", $("#u").val(), {expires: 30, path: "/"});
                     $.cookie("p", $("#p").val(), {expires: 30, path: "/"});
-                }
-                alert(data.message);
-                if (data.return == 0){
-                    window.location = "/";
+                    location.reload();
                 }
             });
         }

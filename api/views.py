@@ -6,6 +6,7 @@ import json
 import index.views
 from function import *
 
+
 def defaultHandler(request):
     return index.views.indexHandler(request)
 
@@ -23,12 +24,9 @@ def signUpHandler(request):
 
 def signInHandler(request):
     try:
-        u = request.POST.get('u')
-        p = request.POST.get('p')
-        v = verifyAccount(u, p)
-        print v, type(v)
+        a = verifyAccount(request)
         res = dict()
-        if v:
+        if a:
             res['message'] = 'Signed in successfully!'
             res['return'] = 0
         else:
@@ -40,7 +38,7 @@ def signInHandler(request):
 
 
 def favoriteHandler(request, cmd):
-    a = verifyAccount(request.POST.get('u'), request.POST.get('p'))
+    a = verifyAccount(request)
     if not a:
         return defaultHandler(request)
     if cmd == 'add':
@@ -63,7 +61,7 @@ def favoriteHandler(request, cmd):
 
 
 def relationHandler(request, cmd):
-    a = verifyAccount(request.POST.get('u'), request.POST.get('p'))
+    a = verifyAccount(request)
     print request.POST
     if not a:
         return defaultHandler(request)
