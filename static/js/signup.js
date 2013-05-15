@@ -10,8 +10,9 @@ function init(){
             e.preventDefault();
             var data = {"u" : $("#u").val(), "e" : $("#e").val(), "p" : $("#p").val()};
             $.post("/api/signup", data, function(data){
-                alert(data.message);
                 if (data.return == 0){
+                    $.cookie('u', $("#u").val());
+                    $.cookie('p', $("#p").val());
                     location.reload();
                 }
             });
