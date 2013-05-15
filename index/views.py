@@ -7,6 +7,8 @@ from function import *
 
 def indexHandler(request):
     a = verifyAccount(request.COOKIES.get('u'), request.COOKIES.get('p'))
+    if not a:
+        a = Account.objects.get(username='all')
     para = dict()
     para['link'] = getLinkByAccount(a)
     createHistory(a, para['link'])

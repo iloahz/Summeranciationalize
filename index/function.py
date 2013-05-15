@@ -30,8 +30,6 @@ def getOrCreateLink(url):
 
 
 def getLinkByAccount(account):
-    if not account:
-        account = Account.objects.filter(username='all').get()
     f = Favorite.objects.filter(account=account)
     r = Relation.objects.filter(account1=account).filter(relationType=1)
     l1 = len(f)
@@ -42,7 +40,7 @@ def getLinkByAccount(account):
     if i < l1:
         return f[i].link
     else:
-        return getLinkByAccount(r[i-l1].account2)
+        return getLinkByAccount(r[i - l1].account2)
 
 
 def createHistory(account, link):
