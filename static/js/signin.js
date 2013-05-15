@@ -15,6 +15,9 @@ function init(){
                     $.cookie("p", $("#p").val(), {expires: 30, path: "/"});
                     location.reload();
                 }
+                else{
+                    alert(data.message);
+                }
             });
         }
     );

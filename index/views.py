@@ -8,7 +8,7 @@ from function import *
 
 @never_cache
 def indexHandler(request):
-    a = verifyAccount(request)
+    a = verifyAccount(request.COOKIES)
     if not a:
         a = Account.objects.get(username='all')
     para = dict()
@@ -18,7 +18,7 @@ def indexHandler(request):
 
 
 def signUpHandler(request):
-    a = verifyAccount(request)
+    a = verifyAccount(request.COOKIES)
     if a:
         return redirect('/account/%s' % a.username)
     else:
@@ -26,7 +26,7 @@ def signUpHandler(request):
 
 
 def signInHandler(request):
-    a = verifyAccount(request)
+    a = verifyAccount(request.COOKIES)
     if a:
         return redirect('/account/%s' % a.username)
     else:

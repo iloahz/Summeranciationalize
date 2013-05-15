@@ -24,7 +24,7 @@ def signUpHandler(request):
 
 def signInHandler(request):
     try:
-        a = verifyAccount(request)
+        a = verifyAccount(request.POST)
         res = dict()
         if a:
             res['message'] = 'Signed in successfully!'
@@ -38,7 +38,7 @@ def signInHandler(request):
 
 
 def favoriteHandler(request, cmd):
-    a = verifyAccount(request)
+    a = verifyAccount(request.POST)
     if not a:
         return defaultHandler(request)
     if cmd == 'add':
@@ -61,8 +61,7 @@ def favoriteHandler(request, cmd):
 
 
 def relationHandler(request, cmd):
-    a = verifyAccount(request)
-    print request.POST
+    a = verifyAccount(request.POST)
     if not a:
         return defaultHandler(request)
     if cmd == 'follow':

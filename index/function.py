@@ -11,8 +11,8 @@ def getAccountByUsername(username):
         return None
 
 
-def verifyAccount(request):
-    a = Account.objects.filter(username=request.COOKIES.get('u')).filter(password=request.COOKIES.get('p'))
+def verifyAccount(data):
+    a = Account.objects.filter(username=data.get('u')).filter(password=data.get('p'))
     try:
         return a.get()
     except:

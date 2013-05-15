@@ -16,6 +16,12 @@ function init(){
             }
         });
     });
+    $("#button-logout").click(function(e){
+        e.preventDefault();
+        $.cookie('u', null, {path : "/"});
+        $.cookie('p', null, {path : "/"});
+        location.reload();
+    });
     if ($("#button-follow").text().trim() == "unfollow"){
         $("#button-follow").addClass("disabled");
 //        $("#button-follow").attr("disabled", "disabled");

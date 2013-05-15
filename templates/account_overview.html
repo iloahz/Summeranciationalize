@@ -27,13 +27,19 @@
         <div id="account-general" class="row" style="padding-top: 32px;">
             <div id="account-avatar" class="span3 thumbnail" style="text-align: center;background: #ffffff;">
                 <img src="{{ avatar }}" class="img-rounded" style="margin-top: 4px;">
-                <button id="button-follow" class="btn btn-primary" style="margin-top: 16px;margin-bottom: 8px;">
-                    {% if following %}
-                        unfollow
-                    {% else %}
-                        follow
-                    {% endif %}
-                </button>
+                {% if self %}
+                    <button id="button-logout" class="btn btn-primary" style="margin-top: 16px;margin-bottom: 8px;">
+                        logout
+                    </button>
+                {% else %}
+                    <button id="button-follow" class="btn btn-primary" style="margin-top: 16px;margin-bottom: 8px;">
+                        {% if following %}
+                            unfollow
+                        {% else %}
+                            follow
+                        {% endif %}
+                    </button>
+                {% endif %}
             </div>
             <div id="account-desc" class="span5 offset2 well">
                 <ul style="list-style: none;">
@@ -80,15 +86,6 @@
                 </div>
             </div>
         </div>
-{#        <div id="links-performed">#}
-{#            <div>#}
-{#                <ul>#}
-{#                {% for f in favorites %}#}
-{#                    <li><a href="{{ f.link.url }}">{{ f.link.url }}</a></li>#}
-{#                {% endfor %}#}
-{#                </ul>#}
-{#            </div>#}
-{#        </div>#}
     </div>
 
     <script src="/static/js/jquery-1.9.1.min.js"></script>
