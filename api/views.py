@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 import json
 import index.views
 from function import *
+from django.views.decorators.csrf import csrf_exempt
 
 
 def defaultHandler(request):
@@ -37,6 +38,7 @@ def signInHandler(request):
         return defaultHandler(request)
 
 
+@csrf_exempt
 def favoriteHandler(request, cmd):
     a = verifyAccount(request.POST)
     if not a:
@@ -60,6 +62,7 @@ def favoriteHandler(request, cmd):
         return defaultHandler(request)
 
 
+@csrf_exempt
 def relationHandler(request, cmd):
     a = verifyAccount(request.POST)
     if not a:
