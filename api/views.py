@@ -8,10 +8,12 @@ from function import *
 from django.views.decorators.csrf import csrf_exempt
 
 
+@csrf_exempt
 def defaultHandler(request):
     return index.views.indexHandler(request)
 
 
+@csrf_exempt
 def signUpHandler(request):
     try:
         u = request.POST.get('u')
@@ -23,6 +25,7 @@ def signUpHandler(request):
         return defaultHandler(request)
 
 
+@csrf_exempt
 def signInHandler(request):
     try:
         a = verifyAccount(request.POST)
