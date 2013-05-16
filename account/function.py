@@ -13,7 +13,7 @@ def getTotalHistoryByAccount(account):
 
 
 def getFavoritesByAccount(account):
-    f = Favorite.objects.filter(account=account)
+    f = Favorite.objects.filter(account=account)[:16]
     return f
 
 
