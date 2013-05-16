@@ -1,6 +1,7 @@
 from models import *
 import random
 from Summeranciationalize import settings
+from url_normalize import url_normalize
 
 
 def getAccountByUsername(username):
@@ -20,6 +21,7 @@ def verifyAccount(data):
 
 
 def getOrCreateLink(url):
+    url = url_normalize(url)
     l = Link.objects.filter(url=url)
     if not l:
         l = Link(url=url)
