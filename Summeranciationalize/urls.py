@@ -19,5 +19,7 @@ urlpatterns = patterns('',
 
     url(r'^account/', include('account.urls')),
 
+    url(r'^fix/', include('fix.urls')),
+
     url(r'^', include('index.urls')),
 )
