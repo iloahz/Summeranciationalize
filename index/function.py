@@ -2,6 +2,7 @@ from models import *
 import random
 from Summeranciationalize import settings
 from url_normalize import url_normalize
+import datetime
 
 
 def getAccountByUsername(username):
@@ -37,6 +38,7 @@ def updateFavorite(account, link):
         f = f.get()
     else:
         f = Favorite(account, link)
+    f.createOn = datetime.datetime.now()
     f.save()
 
 

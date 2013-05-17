@@ -25,7 +25,7 @@ class Link(models.Model):
 class Favorite(models.Model):
     account = models.ForeignKey(Account)
     link = models.ForeignKey(Link)
-    createOn = models.DateTimeField(auto_now_add=True)
+    createOn = models.DateTimeField()
 
     def __unicode__(self):
         return '%s - %s - %s' % (self.account.username, self.link.url, self.createOn)
