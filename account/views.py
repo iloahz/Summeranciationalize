@@ -1,7 +1,6 @@
 # Create your views here.
 
 from django.shortcuts import render_to_response, redirect
-import index.views
 from index.models import *
 from index.function import *
 from function import *
