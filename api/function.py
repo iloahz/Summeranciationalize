@@ -32,7 +32,7 @@ def createAccount(username, email, password):
         return res
     a = Account(username=username, email=email, password=password)
     a.save()
-    getOrCreateRelation(a, Account.objects.get(username='all'), Relation.FOLLOW)
+    # getOrCreateRelation(a, Account.objects.get(username='all'), Relation.FOLLOW)
     res['message'] = 'Account created successfully!'
     res['return'] = 0
     return res
