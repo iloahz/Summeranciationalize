@@ -8,6 +8,8 @@
             <li><a href="/pin">pin</a></li>
             {% if loginUser %}
             <li><a href="/account/{{ loginUser }}">me</a></li>
+            {% else %}
+            <li><a href="/signin">login</a></li>
             {% endif %}
             <li><a href="/">bounce!</a></li>
         </ul>

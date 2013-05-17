@@ -27,6 +27,8 @@ def accountHandler(request, username):
         para['totalHits'] = getTotalHistoryByAccount(a)
         para['isFollowing'] = checkIfRelationExist(getAccountByUsername(request.COOKIES.get('u')), getAccountByUsername(username), Relation.FOLLOW)
         para['loginUser'] = request.COOKIES.get('u')
+        if para['loginUser'] == 'null':
+            del para['loginUser']
         return render_to_response('account_overview.html', para)
     else:
         return defaultHandler(request)
