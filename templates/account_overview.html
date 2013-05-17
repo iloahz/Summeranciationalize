@@ -84,10 +84,12 @@
                 </div>
                 <div id="account-desc" class="span5 offset2 well">
                     <ul style="list-style: none;">
-                        <li><span class="label">user name </span><span class="value" id="username">{{ username }}</span></li>
-                        <li><span class="label">member since </span><span class="value">{{ since }}</span></li>
-                        <li><span class="label">total hits </span><span class="value">{{ totalHits }}</span></li>
-                        <li><span class="label">total links</span><span class="value">{{ totalFavorite }}</span></li>
+                        <li><span class="label">name</span><span class="value" id="username">{{ username }}</span></li>
+                        <li><span class="label">since </span><span class="value">{{ since }}</span></li>
+{#                        <li><span class="label">total hits </span><span class="value">{{ totalHits }}</span></li>#}
+                        <li><span class="label">favorites</span><span class="value">{{ totalFavorite }}</span></li>
+                        <li><span class="label">following</span><span class="value">{{ totalFollowing }}</span></li>
+                        <li><span class="label">followed</span><span class="value">{{ totalFollowed }}</span></li>
                     </ul>
                 </div>
             </div>

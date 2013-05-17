@@ -12,8 +12,18 @@ def getTotalHistoryByAccount(account):
     return len(h)
 
 
+def getTotalFollowingByAccount(account):
+    r = Relation.objects.filter(account1=account, relationType=Relation.FOLLOW)
+    return len(r)
+
+
+def getTotalFollowedByAccount(account):
+    r = Relation.objects.filter(account2=account, relationType=Relation.FOLLOW)
+    return len(r)
+
+
 def getFavoritesByAccount(account):
-    f = Favorite.objects.filter(account=account)[:16]
+    f = Favorite.objects.filter(account=account).order_by('-createOn')[:16]
     return f
 
 

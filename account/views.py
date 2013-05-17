@@ -17,6 +17,8 @@ def accountHandler(request, username):
         para = dict()
         para['username'] = username
         para['totalFavorite'] = getTotalFavoriteByAccount(a)
+        para['totalFollowing'] = getTotalFollowingByAccount(a)
+        para['totalFollowed'] = getTotalFollowedByAccount(a)
         para['favorites'] = getFavoritesByAccount(a)
         para['history'] = getHistoryByAccount(a)
         para['avatar'] = getAvatarByEmail(a.email)
