@@ -47,13 +47,13 @@ def getLinkByAccount(account, current, depth=0):
     r = Relation.objects.filter(account1=current, relationType=Relation.FOLLOW)
     l1 = len(f)
     l2 = len(r)
-    if l1 + l2 == 0 or depth > 4:
+    if l1 + l2 == 0 or depth > 8:
         return getOrCreateLink('http://' + settings.DOMAIN + '/account/' + account.username)
     i = random.randint(0, l1 + l2 - 1)
     if i < l1:
         h = History.objects.filter(account=account, link=f[i].link)
         if h:
-            return getLinkByAccount(current, depth + 1)
+            return getLinkByAccount(account, current, depth + 1)
         else:
             return f[i].link
     else:
