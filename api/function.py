@@ -6,7 +6,7 @@ from account.function import *
 
 def createAccount(username, email, password):
     res = dict()
-    if len(username) < 6:
+    if len(username) < 6 or len(username) > 60:
         res['message'] = 'Invalid user name!'
         res['return'] = 3
         return res
@@ -16,7 +16,7 @@ def createAccount(username, email, password):
         res['message'] = 'Invalid email address!'
         res['return'] = 5
         return res
-    if len(password) < 1:
+    if len(password) < 1 or len(password) > 60:
         res['message'] = 'Invalid password!'
         res['return'] = 4
         return res
