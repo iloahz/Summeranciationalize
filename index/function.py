@@ -37,7 +37,7 @@ def updateFavorite(account, link):
     if f:
         f = f[0]
     else:
-        f = Favorite(account, link)
+        f = Favorite(account=account, link=link)
     f.createOn = datetime.datetime.now()
     f.save()
 
