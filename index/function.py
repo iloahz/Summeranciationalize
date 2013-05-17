@@ -51,6 +51,8 @@ def getLinkByAccount(account, current, depth=0):
         return getOrCreateLink('http://' + settings.DOMAIN + '/account/' + account.username)
     i = random.randint(0, l1 + l2 - 1)
     if i < l1:
+        if account.username == 'all':
+            return f[i].link
         h = History.objects.filter(account=account, link=f[i].link)
         if h:
             return getLinkByAccount(account, current, depth + 1)
