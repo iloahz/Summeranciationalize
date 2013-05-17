@@ -52,18 +52,15 @@ def favoriteHandler(request, cmd):
         f = Favorite.objects.all().order_by('createOn')
         c = len(f) - 1000
         for i in range(0, c):
-            f[i].delete()
+            delFavorite(f[i])
         res = dict()
         res['message'] = 'Favorite added successfully!'
         res['return'] = 0
         return HttpResponse(json.dumps(res), content_type='application/json')
     elif cmd == 'del':
         l = getOrCreateLink(request.POST.get('url'))
-        f = Favorite.objects.filter(account=a).filter(link=l).get()
-        f.delete()
-        left = Favorite.objects.filter(link=l)
-        if len(left) == 0:
-            l.delete()
+        f = Favorite.objects.filter(account=a).filter(link=l)[0]
+        delFavorite(f)
         res = dict()
         res['message'] = 'Favorite deleted successfully!'
         res['return'] = 0

@@ -36,3 +36,11 @@ def createAccount(username, email, password):
     res['message'] = 'Account created successfully!'
     res['return'] = 0
     return res
+
+
+def delFavorite(favorite):
+    l = favorite.link
+    favorite.delete()
+    left = Favorite.objects.filter(link=l)
+    if len(left) == 0:
+        l.delete()
