@@ -42,9 +42,9 @@ def updateFavorite(account, link):
     f.save()
 
 
-def getLinkByAccount(account, depth=0):
-    f = Favorite.objects.filter(account=account)
-    r = Relation.objects.filter(account1=account, relationType=Relation.FOLLOW)
+def getLinkByAccount(account, current, depth=0):
+    f = Favorite.objects.filter(account=current)
+    r = Relation.objects.filter(account1=current, relationType=Relation.FOLLOW)
     l1 = len(f)
     l2 = len(r)
     if l1 + l2 == 0 or depth > 4:
@@ -53,11 +53,11 @@ def getLinkByAccount(account, depth=0):
     if i < l1:
         h = History.objects.filter(account=account, link=f[i].link)
         if h:
-            return getLinkByAccount(account, depth + 1)
+            return getLinkByAccount(current, depth + 1)
         else:
             return f[i].link
     else:
-        return getLinkByAccount(r[i - l1].account2, depth + 1)
+        return getLinkByAccount(account, r[i - l1].account2, depth + 1)
 
 
 def createHistory(account, link):
