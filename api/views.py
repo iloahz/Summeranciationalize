@@ -48,7 +48,11 @@ def favoriteHandler(request, cmd):
         return defaultHandler(request)
     if cmd == 'add':
         l = getOrCreateLink(request.POST.get('url'))
-        f, c = Favorite.objects.get_or_create(account=a, link=l)
+        updateFavorite(a, l)
+        f = Favorite.objects.all().order_by('createOn')
+        c = len(f) - 1000
+        for i in range(0, c):
+            f[i].delete()
         res = dict()
         res['message'] = 'Favorite added successfully!'
         res['return'] = 0
