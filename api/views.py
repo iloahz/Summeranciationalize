@@ -61,6 +61,9 @@ def favoriteHandler(request, cmd):
         l = getOrCreateLink(request.POST.get('url'))
         f = Favorite.objects.filter(account=a).filter(link=l).get()
         f.delete()
+        left = Favorite.objects.filter(link=l)
+        if len(left) == 0:
+            l.delete()
         res = dict()
         res['message'] = 'Favorite deleted successfully!'
         res['return'] = 0
