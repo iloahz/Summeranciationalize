@@ -6,6 +6,7 @@ if ':' in PROJECT_DIR:
     LOCAL = True
 else:
     LOCAL = False
+
 if LOCAL:
     DOMAIN = '127.0.0.1:8000'
 else:
