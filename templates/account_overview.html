@@ -68,7 +68,7 @@
             <div id="account-general" class="row" style="padding-top: 32px;">
                 <div id="account-avatar" class="span3 thumbnail" style="text-align: center;background: #ffffff;">
                     <img src="{{ avatar }}" class="img-rounded" style="margin-top: 4px;">
-                    {% if self %}
+                    {% if loginUser == username %}
                         <button id="button-logout" class="btn btn-primary" style="margin-top: 16px;margin-bottom: 8px;">
                             logout
                         </button>
@@ -99,7 +99,7 @@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="favorite">
-                            {% if self %}
+                            {% if loginUser == username %}
                             <div id="add-fav" class="input-append">
                                 <input id="url-add-fav" type="text" class="" style="min-width: 512px;" data-provide="typeahead">
                                 <input id="button-add-fav" type="button" value="add" class="btn btn-primary">
