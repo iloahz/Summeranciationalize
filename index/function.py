@@ -35,7 +35,7 @@ def getOrCreateLink(url):
 def updateFavorite(account, link):
     f = Favorite.objects.filter(account=account, link=link)
     if f:
-        f = f.get()
+        f = f[0]
     else:
         f = Favorite(account, link)
     f.createOn = datetime.datetime.now()
