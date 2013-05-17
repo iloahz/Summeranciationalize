@@ -10,7 +10,10 @@ if LOCAL:
 else:
     DOMAIN = 'summeranciationalize.com'
 
-DEBUG = True
+if LOCAL:
+    DEBUG = True
+else:
+    DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
