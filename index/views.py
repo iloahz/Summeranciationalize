@@ -17,7 +17,7 @@ def indexHandler(request):
     if not a:
         a = Account.objects.get(username='all')
     para = dict()
-    para['link'] = getLinkByAccount(a)
+    para['link'] = getLinkByAccount(a, a)
     createHistory(a, para['link'])
     return render_to_response('index.html', para)
 
