@@ -74,7 +74,7 @@
                         </button>
                     {% else %}
                         <button id="button-follow" class="btn btn-primary" style="margin-top: 16px;margin-bottom: 8px;">
-                            {% if following %}
+                            {% if isFollowing %}
                                 unfollow
                             {% else %}
                                 follow
@@ -89,7 +89,7 @@
 {#                        <li><span class="label">total hits </span><span class="value">{{ totalHits }}</span></li>#}
                         <li><span class="label">favorites</span><span class="value">{{ totalFavorite }}</span></li>
                         <li><span class="label">following</span><span class="value">{{ totalFollowing }}</span></li>
-                        <li><span class="label">followed</span><span class="value">{{ totalFollowed }}</span></li>
+                        <li><span class="label">follower</span><span class="value">{{ totalFollowed }}</span></li>
                     </ul>
                 </div>
             </div>
@@ -98,6 +98,9 @@
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#favorite" data-toggle="tab">Favorite</a></li>
                         <li><a href="#history" data-toggle="tab">History</a></li>
+                        {% if loginUser == username %}
+                        <li><a href="#following" data-toggle="tab">Following</a></li>
+                        {% endif %}
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="favorite">
@@ -130,6 +133,15 @@
                                 {% endfor %}
                             </ul>
                         </div>
+                        {% if loginUser == username %}
+                        <div class="tab-pane" id="following">
+                            <ul>
+                                {% for f in following %}
+                                <li><a href="/account/{{ f.username }}">{{ f.username }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

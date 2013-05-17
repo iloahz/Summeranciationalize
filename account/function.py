@@ -32,6 +32,11 @@ def getHistoryByAccount(account):
     return h
 
 
+def getFollowingByAccount(account):
+    f = Relation.objects.filter(account1=account, relationType=Relation.FOLLOW)
+    return [i.account2 for i in f]
+
+
 def getOrCreateRelation(account1, account2, relationType):
     r = Relation.objects.filter(account1=account1, account2=account2, relationType=relationType)
     if not r:

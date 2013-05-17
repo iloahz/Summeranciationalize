@@ -21,10 +21,11 @@ def accountHandler(request, username):
         para['totalFollowed'] = getTotalFollowedByAccount(a)
         para['favorites'] = getFavoritesByAccount(a)
         para['history'] = getHistoryByAccount(a)
+        para['following'] = getFollowingByAccount(a)
         para['avatar'] = getAvatarByEmail(a.email)
         para['since'] = a.createdOn.strftime('%Y.%m.%d')
         para['totalHits'] = getTotalHistoryByAccount(a)
-        para['following'] = checkIfRelationExist(getAccountByUsername(request.COOKIES.get('u')), getAccountByUsername(username), Relation.FOLLOW)
+        para['isFollowing'] = checkIfRelationExist(getAccountByUsername(request.COOKIES.get('u')), getAccountByUsername(username), Relation.FOLLOW)
         para['loginUser'] = request.COOKIES.get('u')
         return render_to_response('account_overview.html', para)
     else:
