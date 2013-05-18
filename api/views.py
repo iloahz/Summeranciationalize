@@ -49,7 +49,7 @@ def favoriteHandler(request, cmd):
     if cmd == 'add':
         l = getOrCreateLink(request.POST.get('url'))
         addFavorite(a, l)
-        f = Favorite.objects.all().order_by('createOn')
+        f = Favorite.objects.filter(account=a).order_by('createOn')
         c = len(f) - 1000
         for i in range(0, c):
             delFavorite(f[i])
