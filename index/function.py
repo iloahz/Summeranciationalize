@@ -32,16 +32,6 @@ def getOrCreateLink(url):
     return l
 
 
-def updateFavorite(account, link):
-    f = Favorite.objects.filter(account=account, link=link)
-    if f:
-        f = f[0]
-    else:
-        f = Favorite(account=account, link=link)
-    f.createOn = datetime.datetime.now()
-    f.save()
-
-
 def getLinkByAccount(account, current, depth=0):
     f = Favorite.objects.filter(account=current)
     r = Relation.objects.filter(account1=current, relationType=Relation.FOLLOW)

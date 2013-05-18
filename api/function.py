@@ -38,6 +38,16 @@ def createAccount(username, email, password):
     return res
 
 
+def addFavorite(account, link):
+    f = Favorite.objects.filter(account=account, link=link)
+    if f:
+        f = f[0]
+    else:
+        f = Favorite(account=account, link=link)
+    f.createOn = datetime.datetime.now()
+    f.save()
+
+
 def delFavorite(favorite):
     l = favorite.link
     favorite.delete()

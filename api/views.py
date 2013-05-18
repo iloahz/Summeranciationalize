@@ -48,7 +48,7 @@ def favoriteHandler(request, cmd):
         return defaultHandler(request)
     if cmd == 'add':
         l = getOrCreateLink(request.POST.get('url'))
-        updateFavorite(a, l)
+        addFavorite(a, l)
         f = Favorite.objects.all().order_by('createOn')
         c = len(f) - 1000
         for i in range(0, c):
