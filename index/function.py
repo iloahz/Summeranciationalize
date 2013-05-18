@@ -14,9 +14,9 @@ def getAccountByUsername(username):
 
 
 def verifyAccount(data):
-    a = Account.objects.filter(username=data.get('u')).filter(password=data.get('p'))
+    a = Account.objects.filter(username=data.get('u'), password=data.get('p'))
     try:
-        return a.get()
+        return a[0]
     except:
         return None
 
@@ -28,7 +28,7 @@ def getOrCreateLink(url):
         l = Link(url=url)
         l.save()
     else:
-        l = l.get()
+        l = l[0]
     return l
 
 
