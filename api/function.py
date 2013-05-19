@@ -49,8 +49,11 @@ def addFavorite(account, link):
 
 
 def delFavorite(favorite):
-    l = favorite.link
     favorite.delete()
-    left = Favorite.objects.filter(link=l)
-    if len(left) == 0:
-        l.delete()
+    try:
+        l = favorite.link
+        left = Favorite.objects.filter(link=l)
+        if len(left) == 0:
+            l.delete()
+    except:
+        pass
