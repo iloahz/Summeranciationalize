@@ -6,8 +6,8 @@
             <li>faq</li>
             <li>about</li>
             <li><a href="/pin">pin</a></li>
-            {% if loginUser %}
             <li><a href="http://weibo.com/Summeranciationalize">talk</a></li>
+            {% if loginUser %}
             <li><a href="/account/{{ loginUser }}">me</a></li>
             {% else %}
             <li><a href="/signin">login</a></li>
