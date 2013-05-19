@@ -65,6 +65,12 @@ def favoriteHandler(request, cmd):
         res['message'] = 'Favorite deleted successfully!'
         res['return'] = 0
         return HttpResponse(json.dumps(res), content_type='application/json')
+    elif cmd == 'get':
+        f = Favorite.objects.filter(account=a)
+        res = list()
+        for i in f:
+            res.append(i.link.url)
+        return HttpResponse(json.dumps(res), content_type='application/json')
     else:
         return defaultHandler(request)
 
