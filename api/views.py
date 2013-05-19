@@ -50,7 +50,7 @@ def favoriteHandler(request, cmd):
         l = getOrCreateLink(request.POST.get('url'))
         addFavorite(a, l)
         f = Favorite.objects.filter(account=a).order_by('createOn')
-        c = len(f) - 1000
+        c = len(f) - 4096
         for i in range(0, c):
             delFavorite(f[i])
         res = dict()
